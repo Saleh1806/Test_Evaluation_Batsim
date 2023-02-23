@@ -28,6 +28,19 @@ mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 ```
 
+Additionally, you can enable downloading pre-built packages from our Nix binary cache to avoid compiling the whole software stack.
+This can be done with the following command.
+
+```sh
+nix-env -iA cachix -f https://cachix.org/api/v1/install
+cachix use capack
+```
+
+## Clone this repository on the machine you use
+```sh
+git clone https://framagit.org/batsim/energy-instance-example.git
+```
+
 ## Run the simulation
 This is done by calling the `run-simulation.sh` script from the `simulation` environment.
 
@@ -39,6 +52,11 @@ nix develop .#simulation
 ./run-simulation.sh
 ```
 
+If the simulation has run successfully, you should now see an `out` directory that contains the simulation outputs.
+Here is a log of a simulation execution.
+
+[![asciicast](https://asciinema.org/a/562280.png)](https://asciinema.org/a/562280)
+
 ## Run the interactive visualization
 This is done by calling the `run-visualization.sh` script from the `visualization` environment.
 
@@ -49,3 +67,7 @@ nix develop .#visualization
 # Then, inside the shell created by the previous command, run the visualization
 ./run-visualization.sh
 ```
+
+The visualization should open a window that looks like the following.
+
+![Visualization output](./visualization-output.png "Vizualization output")
